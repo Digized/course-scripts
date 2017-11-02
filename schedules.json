@@ -1,0 +1,156 @@
+{
+    "ADM1100": {
+        "course_title": "Introduction to Business Management",
+        "sections": [
+            {
+                "section": "ADM1100 A00\n(September 06 - December 06)",
+                "professor": "Patrick Woodcock",
+                "activity": "LEC",
+                "day": "Monday 19:00 - 22:00",
+                "location": "MHN 033"
+            },
+            {
+                "section": "ADM1100 D00\n(September 06 - December 06)",
+                "professor": "Abdelkrim Hamou-Lhadj",
+                "activity": "LEC",
+                "day": "Tuesday 19:00 - 22:00",
+                "location": "STE B0138"
+            },
+            {
+                "section": "ADM1100 B00\n(September 06 - December 06)",
+                "professor": "Patrick Woodcock",
+                "activity": "LEC",
+                "day": "Thursday 19:00 - 22:00",
+                "location": "MRN 150"
+            },
+            {
+                "section": "ADM1100 C00\n(September 06 - December 06)",
+                "professor": "Patrick Woodcock",
+                "activity": "LEC",
+                "day": "Wednesday 19:00 - 22:00",
+                "location": "FSS 2005"
+            }
+        ]
+    },
+    "SEG2106": {
+        "course_title": "Software Construction",
+        "sections": [
+            {
+                "section": "SEG2106 A00\n(January 08 - April 11)",
+                "professor": "Hussein Al Osman",
+                "activity": "LEC",
+                "day": "Thursday 11:30 - 13:00",
+                "location": "LEE A131"
+            },
+            {
+                "section": "SEG2106 A01\n(January 08 - April 11)",
+                "professor": "Hussein Al Osman",
+                "activity": "LAB",
+                "day": "Monday 19:00 - 22:00",
+                "location": "STE 2060"
+            },
+            {
+                "section": "SEG2106 A02\n(January 08 - April 11)",
+                "professor": "Hussein Al Osman",
+                "activity": "LAB",
+                "day": "Friday 17:30 - 20:30",
+                "location": "STE 2052"
+            },
+            {
+                "section": "SEG2106 B00\n(January 08 - April 11)",
+                "professor": "Not available at this time.",
+                "activity": "LEC",
+                "day": "Friday 16:00 - 17:30",
+                "location": "MNO E218"
+            },
+            {
+                "section": "SEG2106 B01\n(January 08 - April 11)",
+                "professor": "Not available at this time.",
+                "activity": "LAB",
+                "day": "Monday 19:00 - 22:00",
+                "location": "STE 2052"
+            },
+            {
+                "section": "SEG2106 B02\n(January 08 - April 11)",
+                "professor": "Not available at this time.",
+                "activity": "LAB",
+                "day": "Wednesday 19:00 - 22:00",
+                "location": "STE 0131"
+            }
+        ]
+    },
+    "SEG2105": {
+        "course_title": "Software Engineering",
+        "course_code": "SEG2105",
+        "sections": [
+            {
+                "section": "A00",
+                "professor": "Hussein Al Osman",
+                "activities": [
+                        {
+                            "location": "LEE A123",
+                            "day": "Friday",
+                            "startTime": "12:00",
+                            "duration":"30",
+                            "activity":"LEC",
+                            "section": "A00"
+                            
+                        },
+                        {
+                            "location": "LEE A123",
+                            "day": "Thursday",
+                            "startTime": "12:00",
+                            "duration":"30",
+                            "activity":"LEC",
+                            "section": "A00"
+                            
+                        },
+                        {
+                            "location": "LEE A123",
+                            "day": "Thursday",
+                            "startTime": "12:00",
+                            "duration":"30",
+                            "activity":"LAB",
+                            "section": "A01"
+                            
+                        }
+                    ]
+            },
+            {
+                "section": "SEG2106 A01\n(January 08 - April 11)",
+                "professor": "Hussein Al Osman",
+                "activity": "LAB",
+                "day": "Monday 19:00 - 22:00",
+                "location": "STE 2060"
+            },
+            {
+                "section": "SEG2106 A02\n(January 08 - April 11)",
+                "professor": "Hussein Al Osman",
+                "activity": "LAB",
+                "day": "Friday 17:30 - 20:30",
+                "location": "STE 2052"
+            },
+            {
+                "section": "SEG2106 B00\n(January 08 - April 11)",
+                "professor": "Not available at this time.",
+                "activity": "LEC",
+                "day": "Friday 16:00 - 17:30",
+                "location": "MNO E218"
+            },
+            {
+                "section": "SEG2106 B01\n(January 08 - April 11)",
+                "professor": "Not available at this time.",
+                "activity": "LAB",
+                "day": "Monday 19:00 - 22:00",
+                "location": "STE 2052"
+            },
+            {
+                "section": "SEG2106 B02\n(January 08 - April 11)",
+                "professor": "Not available at this time.",
+                "activity": "LAB",
+                "day": "Wednesday 19:00 - 22:00",
+                "location": "STE 0131"
+            }
+        ]
+    }
+}

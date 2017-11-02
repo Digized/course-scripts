@@ -1,0 +1,68 @@
+{
+    "SEG2105": {
+        "course_title": "Software Engineering",
+        "course_code": "SEG2105",
+        "sections": [
+            {
+                "section": "A00",
+                "professor": "Hussein Al Osman",
+                "activities": [
+                    {
+                        "location": "LEE A123",
+                        "day": "Friday",
+                        "startTime": "12:00",
+                        "duration": "30",
+                        "activity": "LEC",
+                        "section": "A00"
+                    },
+                    {
+                        "location": "LEE A123",
+                        "day": "Thursday",
+                        "startTime": "12:00",
+                        "duration": "30",
+                        "activity": "LEC",
+                        "section": "A00"
+                    },
+                    {
+                        "location": "LEE A123",
+                        "day": "Thursday",
+                        "startTime": "12:00",
+                        "duration": "30",
+                        "activity": "LAB",
+                        "section": "A01"
+                    }
+                ]
+            },
+            {
+                "section": "B00",
+                "professor": "Not Hussein Al Osman",
+                "activities": [
+                    {
+                        "location": "LEE A123",
+                        "day": "Friday",
+                        "startTime": "12:00",
+                        "duration": "30",
+                        "activity": "LEC",
+                        "section": "B00"
+                    },
+                    {
+                        "location": "LEE A123",
+                        "day": "Thursday",
+                        "startTime": "12:00",
+                        "duration": "30",
+                        "activity": "LEC",
+                        "section": "B00"
+                    },
+                    {
+                        "location": "LEE A123",
+                        "day": "Thursday",
+                        "startTime": "12:00",
+                        "duration": "30",
+                        "activity": "LAB",
+                        "section": "B01"
+                    }
+                ]
+            }
+        ]
+    }
+}
