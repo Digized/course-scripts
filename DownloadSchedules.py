@@ -7,6 +7,9 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 class Course:
+    """
+    course
+    """
     def __init__(self, url):
         self.driver = webdriver.Chrome()
         urls = url.split(" ")
@@ -20,18 +23,31 @@ class Course:
         driver = self.driver
         driver.get(self.url)
         course_title = driver.find_element(By.TAG_NAME, "h1").text
-        course_sections = driver.find_elements(By.CSS_SELECTOR, "table.display")
+        rows = driver.find_elements(By.XPATH, "//table[@class='display']/tbody/tr[not(contains(@class,'first-element') or contains(@class, 'footer'))]")
         sections = []
-        for course_section in course_sections:
-            section = {}
-            section["section"] = course_section.find_element(By.CLASS_NAME, "Section").text
-            section["professor"] = course_section.find_element(By.CLASS_NAME, "Professor").text
-            section["activity"] = course_section.find_element(By.CLASS_NAME, "Activity").text
-            section["day"] = course_section.find_element(By.CLASS_NAME, "Day").text
-            section["location"] = course_section.find_element(By.CLASS_NAME, "Place").text
-            sections.append(section)
+        for row in rows: # Fill in the information for a single row
+            section = row.find_element(By.CLASS_NAME, "Section").text.splitlines()[0].split(" ")[1]
+            activity = {}
+            activity["location"] = row.find_element(By.CLASS_NAME, "Place").text
+            day_and_time = row.find_element(By.CLASS_NAME, "Day").text.split(" ")
+            activity["day"] = day_and_time[0]
+            activity["start"] = day_and_time[1]
+            activity["end"] = day_and_time[3]
+            activity["activity"] = row.find_element(By.CLASS_NAME, "Activity").text
+            activity["section"] = section
+            matching = [x for x in sections if x["section"] == section[0]]
+            if matching:
+                sections[sections.index(matching[0])]["activities"].append(activity)
+            else:
+                new_section = {}
+                new_section["section"] = section[0]
+                new_section["professor"] = row.find_element(By.CLASS_NAME, "Professor").text
+                new_section["activities"] = []
+                new_section["activities"].append(activity)
+                sections.append(new_section)
         driver.close()
-        return [self.code, {"course_title":course_title, "sections":sections}]
+
+        return [self.code, {"course_title":course_title, "course_code":self.code, "sections":sections}]
 
 LINKS = []
 SCHEDULES = {}

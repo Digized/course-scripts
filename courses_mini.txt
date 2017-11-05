@@ -1,11 +1,4 @@
-ADM1101 https://web30.uottawa.ca/v3/SITS/timetable/Course.aspx?id=000002&term=2181&session=FS
-ADM1300 https://web30.uottawa.ca/v3/SITS/timetable/Course.aspx?id=000003&term=2181&session=FS
+CSI2110 https://web30.uottawa.ca/v3/SITS/timetable/Course.aspx?id=006509&term=2179&session=FS
 ADM1301 https://web30.uottawa.ca/v3/SITS/timetable/Course.aspx?id=000004&term=2181&session=FS
 ADM1340 https://web30.uottawa.ca/v3/SITS/timetable/Course.aspx?id=000005&term=2181&session=FS
-ADM1370 https://web30.uottawa.ca/v3/SITS/timetable/Course.aspx?id=000006&term=2181&session=FS
-ADM1500 https://web30.uottawa.ca/v3/SITS/timetable/Course.aspx?id=000007&term=2181&session=FS
-ADM1501 https://web30.uottawa.ca/v3/SITS/timetable/Course.aspx?id=000008&term=2181&session=FS
-ADM1700 https://web30.uottawa.ca/v3/SITS/timetable/Course.aspx?id=000009&term=2181&session=FS
-ADM1701 https://web30.uottawa.ca/v3/SITS/timetable/Course.aspx?id=000010&term=2181&session=FS
-ADM1740 https://web30.uottawa.ca/v3/SITS/timetable/Course.aspx?id=000011&term=2181&session=FS
-ADM1770 https://web30.uottawa.ca/v3/SITS/timetable/Course.aspx?id=000012&term=2181&session=FS
+ADM1100 https://web30.uottawa.ca/v3/SITS/timetable/Course.aspx?id=000001&term=2175&session=A
