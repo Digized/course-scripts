@@ -2,3 +2,6 @@ CSI2110 https://web30.uottawa.ca/v3/SITS/timetable/Course.aspx?id=006509&term=21
 ADM1301 https://web30.uottawa.ca/v3/SITS/timetable/Course.aspx?id=000004&term=2181&session=FS
 ADM1340 https://web30.uottawa.ca/v3/SITS/timetable/Course.aspx?id=000005&term=2181&session=FS
 ADM1100 https://web30.uottawa.ca/v3/SITS/timetable/Course.aspx?id=000001&term=2175&session=A
+ADM2341 https://web30.uottawa.ca/v3/SITS/timetable/Course.aspx?id=000029&term=2181&session=FS
+ERG5753 https://web30.uottawa.ca/v3/SITS/timetable/Course.aspx?id=012830&term=2181&session=TR
+HIS3150 https://web30.uottawa.ca/v3/SITS/timetable/Course.aspx?id=015708&term=2181&session=FS

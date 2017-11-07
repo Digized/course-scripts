@@ -1,4 +1,3 @@
-number of links:2860
 ADM1100 https://web30.uottawa.ca/v3/SITS/timetable/Course.aspx?id=000001&term=2181&session=FS
 ADM1101 https://web30.uottawa.ca/v3/SITS/timetable/Course.aspx?id=000002&term=2181&session=FS
 ADM1300 https://web30.uottawa.ca/v3/SITS/timetable/Course.aspx?id=000003&term=2181&session=FS
