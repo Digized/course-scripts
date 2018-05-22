@@ -41,5 +41,5 @@ def main(term="ALL"):
         course_file.writelines("\n".join(courses))
 
 with ThreadPoolExecutor(max_workers=5) as executer:
-    for term in ["2175", "2179", "2181"]:
+    for term in ["2185", "2189", "2191"]:
         executer.submit(main, term)

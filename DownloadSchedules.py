@@ -65,7 +65,7 @@ def work(url):
 
 def main():
     print("reading from file")
-    with open("courses2181.txt", "r") as courses_file:
+    with open("courses2189.txt", "r") as courses_file:
         for line in courses_file.readlines():
             LINKS.append(line)
 
@@ -74,7 +74,7 @@ def main():
         for res in zip(LINKS, executer.map(work, LINKS)):
             SCHEDULES[res[1][0]] = res[1][1]
     print("writing to file")
-    with open("schedules_winter_2018_3.json", "w") as schedules_file:
+    with open("schedules_fall_2018.json", "w") as schedules_file:
         schedules_file.write(json.dumps(SCHEDULES))
 
 if __name__ == '__main__':
