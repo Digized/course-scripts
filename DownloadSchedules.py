@@ -53,7 +53,7 @@ class Course:
         return (code, {"course_title":course_title, "course_code":code, "sections":sections, "url":url})
 
 LINKS = []
-SCHEDULES = {}
+SCHEDULES = []
 
 
 def work(url):
@@ -72,10 +72,12 @@ def main():
     print("running selenium")
     with ThreadPoolExecutor(max_workers=20) as executer:
         for res in zip(LINKS, executer.map(work, LINKS)):
-            SCHEDULES[res[1][0]] = res[1][1]
+            SCHEDULES.append(res[1][1])
     print("writing to file")
     with open("schedules_fall_2018.json", "w") as schedules_file:
-        schedules_file.write(json.dumps(SCHEDULES))
+        courses = {}
+        courses["courses"]=SCHEDULES
+        schedules_file.write(json.dumps(courses))
 
 if __name__ == '__main__':
     main()
