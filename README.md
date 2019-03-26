@@ -1,3 +1,5 @@
+unfotunately will have to archive tjis repo due to uottawa changing their course search form
+
 # Get Started
 1. Install python 3.x
 2. install chromedriver http://selenium-python.readthedocs.io/installation.html#drivers
