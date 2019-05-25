@@ -189,27 +189,6 @@ def getSubjects():
     return codes
 
 
-RESULT = {}
-
-exit_flag = {}
-
-
-def writer(term):
-    while not exit_flag[term]:
-        for x in as_completed(futures[term]):
-            if x.result() is not None:
-                logging.info("Joining " + str(len(x.result())))
-                RESULT[term] = {**RESULT[term], **x.result()}
-
-
-def file_writer(term):
-    wait(futures[term], timeout=None, return_when=ALL_COMPLETED)
-    exit_flag[term] = True
-    logging.info("Trigger " + term + "to stop")
-
-
-futures = {}
-
 if __name__ == '__main__':
     start = time.time()
     logging.info('\a')
@@ -219,27 +198,28 @@ if __name__ == '__main__':
     logging.info("got courses")
     logging.info(courses)
 
-    with ThreadPoolExecutor(max_workers=5) as executer:
+    with ThreadPoolExecutor(max_workers=10) as executer:
         for term in ["2199", "2201"]:
-            RESULT[term] = {}
-            futures[term] = []
-            exit_flag[term] = False
-            write = threading.Thread(target=writer, args=(term,))
-            write.start()
+            result = {}
+            futures = []
             for subject in courses:
                 for year in [1, 2, 3, 4]:
-                    futures[term].append(
+                    futures.append(
                         executer.submit(executeTask, term, subject, year))
-            file_write = threading.Thread(target=file_writer, args=(term,))
-            file_write.start()
-            write.join()
-            file_write.join()
+            while len(futures) < 1:
+                pass
+            wait(futures, timeout=None, return_when=ALL_COMPLETED)
+            for x in as_completed(futures):
+                if x.result() is not None:
+                    logging.info("Joining " + str(len(x.result())))
+                    result = {**result, **x.result()}
+
             with open(term + ".json", "w") as schedules_file:
-                schedules_file.write(json.dumps(RESULT[term]))
+                schedules_file.write(json.dumps(result))
                 logging.info("written " + term + ".json")
                 logging.info('\a')
     end = time.time()
-    logging.info("Started: " + start)
-    logging.info("Ended: " + end)
-    logging.info("Completed in: " + end-start)
+    logging.info("Started: " + str(start))
+    logging.info("Ended: " + str(end))
+    logging.info("Completed in: " + str(end-start))
     logging.info('\a')
