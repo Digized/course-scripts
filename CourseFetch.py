@@ -16,6 +16,9 @@ from string import ascii_uppercase
 import json
 import re
 import threading
+import logging
+logging.basicConfig(filename='log.log', level=logging.INFO,
+                    format='[%(asctime)s] %(threadName)s-%(levelname)s  %(message)s')
 
 
 DAY_MAP = {"Mo": "Monday", "Tu": "Tuesday", "We": "Wednesday",
@@ -33,10 +36,10 @@ def getDriver():
 
 def executeTask(term, subject, year):
     driver = getDriver()
-    print("STARTED: " + term + " " + subject + " " + str(year))
+    logging.info("STARTED: " + term + " " + subject + " " + str(year))
     res = main(term, subject, year, driver)
     driver.quit()
-    print("COMPLETED: " + term + " " + subject + " " + str(year))
+    logging.info("COMPLETED: " + term + " " + subject + " " + str(year))
     return res
 
 
@@ -48,23 +51,33 @@ def main(term, subject, year, driver):
     driver.get(
         URL
     )
+    logging.info("> at url")
+
     dp = driver.find_element(
         By.XPATH, '//select[@id="CLASS_SRCH_WRK2_STRM$35$"]')
     dropdown = Select(dp)
     dropdown.select_by_value(term)
+    logging.info("> selected term " + term)
+
     sub_elem = driver.find_element(By.ID, "SSR_CLSRCH_WRK_SUBJECT$0")
     while sub_elem.get_attribute("value") != subject:
         sub_elem.clear()
         sub_elem.click()
         for c in subject:
             sub_elem.send_keys(c)
+    logging.info("> selected subject " + subject)
+
     year_elem = driver.find_element(
         By.ID, "UO_PUB_SRCH_WRK_SSR_RPTCK_OPT_0" + str(year) + "$0"
     )
     year_elem.click()
+    logging.info("> selected year " + str(year))
+
     time.sleep(2)
     driver.execute_script(
         "submitAction_win0(document.win0,'CLASS_SRCH_WRK2_SSR_PB_CLASS_SRCH')")
+    logging.info("> searching")
+
     try:
         wait.until(lambda driver: driver.find_element(
             By.ID, "win0divSSR_CLSRSLT_WRK_GROUPBOX2$0"))
@@ -145,12 +158,15 @@ def toJsonFormat(driver):
             course_index = course_index + 1
         except NoSuchElementException:
             break
+    logging.info("> found " + str(course_index) + " courses")
     return courses
 
 
-def getCourses():
+def getSubjects():
     driver = getDriver()
+
     driver.get(URL)
+    logging.info("> at url")
     wait = WebDriverWait(driver, 10)
     # taken from https://github.com/morinted/schedule-generator
     driver.find_element(By.ID, 'CLASS_SRCH_WRK2_SSR_PB_SUBJ_SRCH$0').click()
@@ -158,12 +174,14 @@ def getCourses():
         By.ID, "SSR_CLSRCH_WRK2_SSR_ALPHANUM_A"))
     codes = []
     for letter in ascii_uppercase:
+        logging.info("> at letter " + letter)
         time.sleep(1)
         driver.find_element(
             By.ID, 'SSR_CLSRCH_WRK2_SSR_ALPHANUM_' + letter).click()
         html = driver.page_source
         current_codes = re.findall(
             '<span class="PSEDITBOX_DISPONLY" id="SSR_CLSRCH_SUBJ_SUBJECT\$\d+">([A-Z][A-Z][A-Z])</span>', html)
+        logging.info("> found " + str(len(current_codes)) + " subjects")
         codes.extend(current_codes)
     codes = list(set(codes))
     codes.sort()
@@ -192,11 +210,12 @@ futures = {}
 
 if __name__ == '__main__':
     start = time.time()
-    print('\a')
-    courses = getCourses()
+    logging.info('\a')
+    logging.info("retrieving courses")
+    courses = getSubjects()
     # courses = ["SEG", "CSI", "ADM"]
-    print("got courses")
-    print(courses)
+    logging.info("got courses")
+    logging.info(courses)
 
     with ThreadPoolExecutor(max_workers=5) as executer:
         for term in ["2199", "2201"]:
@@ -215,10 +234,10 @@ if __name__ == '__main__':
             file_write.join()
             with open(term + ".json", "w") as schedules_file:
                 schedules_file.write(json.dumps(RESULT[term]))
-                print("written " + term + ".json")
-                print('\a')
+                logging.info("written " + term + ".json")
+                logging.info('\a')
     end = time.time()
-    print("Started: " + start)
-    print("Ended: " + end)
-    print("Completed in: " + end-start)
-    print('\a')
+    logging.info("Started: " + start)
+    logging.info("Ended: " + end)
+    logging.info("Completed in: " + end-start)
+    logging.info('\a')
