@@ -209,7 +209,7 @@ if __name__ == '__main__':
                 for year in [1, 2, 3, 4]:
                     futures[term].append(
                         executer.submit(executeTask, term, subject, year))
-            file_write = threading.Thread(target=file_writer, args=(30, term))
+            file_write = threading.Thread(target=file_writer, args=(300, term))
             file_write.start()
             write.join()
             file_write.join()
