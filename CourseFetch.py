@@ -180,7 +180,7 @@ def getSubjects():
             By.ID, 'SSR_CLSRCH_WRK2_SSR_ALPHANUM_' + letter).click()
         html = driver.page_source
         current_codes = re.findall(
-            '<span class="PSEDITBOX_DISPONLY" id="SSR_CLSRCH_SUBJ_SUBJECT\$\d+">([A-Z][A-Z][A-Z])</span>', html)
+            r'<span class="PSEDITBOX_DISPONLY" id="SSR_CLSRCH_SUBJ_SUBJECT\$\d+">([A-Z][A-Z][A-Z])</span>', html)
         logging.info("> found " + str(len(current_codes)) + " subjects")
         codes.extend(current_codes)
     codes = list(set(codes))
@@ -198,12 +198,14 @@ def writer(term):
     while not exit_flag[term]:
         for x in as_completed(futures[term]):
             if x.result() is not None:
+                logging.info("Joining " + str(len(x.result())))
                 RESULT[term] = {**RESULT[term], **x.result()}
 
 
 def file_writer(sec, term):
     time.sleep(sec)
     exit_flag[term] = True
+    logging.info("Trigger " + term + "to stop")
 
 
 futures = {}
@@ -228,7 +230,7 @@ if __name__ == '__main__':
                 for year in [1, 2, 3, 4]:
                     futures[term].append(
                         executer.submit(executeTask, term, subject, year))
-            file_write = threading.Thread(target=file_writer, args=(300, term))
+            file_write = threading.Thread(target=file_writer, args=(900, term))
             file_write.start()
             write.join()
             file_write.join()
