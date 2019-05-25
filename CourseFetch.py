@@ -3,7 +3,7 @@ a module to download all courses from the uottawa course timetable website
 much more minimized version of https://github.com/morinted/schedule-generator
 """
 from concurrent.futures.thread import ThreadPoolExecutor
-from concurrent.futures import as_completed
+from concurrent.futures import as_completed, wait, ALL_COMPLETED
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -202,8 +202,8 @@ def writer(term):
                 RESULT[term] = {**RESULT[term], **x.result()}
 
 
-def file_writer(sec, term):
-    time.sleep(sec)
+def file_writer(term):
+    wait(futures[term], timeout=None, return_when=ALL_COMPLETED)
     exit_flag[term] = True
     logging.info("Trigger " + term + "to stop")
 
@@ -230,7 +230,7 @@ if __name__ == '__main__':
                 for year in [1, 2, 3, 4]:
                     futures[term].append(
                         executer.submit(executeTask, term, subject, year))
-            file_write = threading.Thread(target=file_writer, args=(900, term))
+            file_write = threading.Thread(target=file_writer, args=(term,))
             file_write.start()
             write.join()
             file_write.join()
