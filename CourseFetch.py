@@ -180,8 +180,6 @@ def writer(term):
     while not exit_flag[term]:
         for x in as_completed(futures[term]):
             if x.result() is not None:
-                print(x.result())
-                print()
                 RESULT[term] = {**RESULT[term], **x.result()}
 
 
