@@ -26,7 +26,7 @@ URL = "https://uocampus.public.uottawa.ca/psc/csprpr9pub/EMPLOYEE/HRMS/c/UO_SR_A
 
 def getDriver():
     options = webdriver.ChromeOptions()
-    # options.add_argument("--headless")
+    options.add_argument("--headless")
     driver = webdriver.Chrome(options=options)
     return driver
 
@@ -193,10 +193,10 @@ def file_writer(sec, term):
 futures = {}
 
 if __name__ == '__main__':
-
+    start = time.time()
     print('\a')
-    # courses = getCourses()
-    courses = ["SEG", "CSI", "ADM"]
+    courses = getCourses()
+    # courses = ["SEG", "CSI", "ADM"]
     print("got courses")
     print(courses)
 
@@ -219,5 +219,8 @@ if __name__ == '__main__':
                 schedules_file.write(json.dumps(RESULT[term]))
                 print("written " + term + ".json")
                 print('\a')
-
+    end = time.time()
+    print("Started: " + start)
+    print("Ended: " + end)
+    print("Completed in: " + end-start)
     print('\a')
