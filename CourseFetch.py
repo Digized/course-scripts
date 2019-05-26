@@ -29,7 +29,7 @@ URL = "https://uocampus.public.uottawa.ca/psc/csprpr9pub/EMPLOYEE/HRMS/c/UO_SR_A
 
 def getDriver():
     options = webdriver.ChromeOptions()
-    # options.add_argument("--headless")
+    options.add_argument("--headless")
     driver = webdriver.Chrome(options=options)
     return driver
 
@@ -194,7 +194,7 @@ if __name__ == '__main__':
     logging.info('\a')
     logging.info("retrieving courses")
     subjects = getSubjects()
-    subjects = ["SEG", "CSI", "ADM"]
+    # subjects = ["SEG", "CSI", "ADM"]
     logging.info("got courses")
     logging.info(subjects)
 
