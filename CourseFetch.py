@@ -193,16 +193,16 @@ if __name__ == '__main__':
     start = time.time()
     logging.info('\a')
     logging.info("retrieving courses")
-    courses = getSubjects()
-    # courses = ["SEG", "CSI", "ADM"]
+    subjects = getSubjects()
+    # subjects = ["SEG", "CSI", "ADM"]
     logging.info("got courses")
-    logging.info(courses)
+    logging.info(subjects)
 
     with ThreadPoolExecutor(max_workers=10) as executer:
         for term in ["2199", "2201"]:
             result = {}
             futures = []
-            for subject in courses:
+            for subject in subjects:
                 for year in [1, 2, 3, 4]:
                     futures.append(
                         executer.submit(executeTask, term, subject, year))
@@ -215,7 +215,9 @@ if __name__ == '__main__':
                     result = {**result, **x.result()}
 
             with open(term + ".json", "w") as schedules_file:
-                schedules_file.write(json.dumps(result))
+                res = {}
+                res["courses"] = result
+                schedules_file.write(json.dumps(res))
                 logging.info("written " + term + ".json")
                 logging.info('\a')
     end = time.time()
