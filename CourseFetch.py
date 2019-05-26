@@ -29,7 +29,7 @@ URL = "https://uocampus.public.uottawa.ca/psc/csprpr9pub/EMPLOYEE/HRMS/c/UO_SR_A
 
 def getDriver():
     options = webdriver.ChromeOptions()
-    options.add_argument("--headless")
+    # options.add_argument("--headless")
     driver = webdriver.Chrome(options=options)
     return driver
 
@@ -149,7 +149,7 @@ def toJsonFormat(driver):
 
             course_code_title = groupbox.find_element(
                 By.ID, "win0divSSR_CLSRSLT_WRK_GROUPBOX2GP$" + str(course_index)).text
-            course_code, course_title = course_code_title.strip().split(" - ")
+            course_code, course_title = course_code_title.strip().split(" - ", 1)
             course_code = course_code.replace(" ", "")
             course["course_code"] = course_code
             course["course_title"] = course_title
