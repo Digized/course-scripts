@@ -89,7 +89,7 @@ def main(term, subject, year, driver):
 def toJsonFormat(driver):
     course_index = 0
     activity_index = 0
-    courses = {}
+    courses = []
     while True:
         try:
             # if element cannot be found we have reached end of the list
@@ -154,7 +154,7 @@ def toJsonFormat(driver):
             course["course_code"] = course_code
             course["course_title"] = course_title
             course["sections"] = sections
-            courses[course_code] = course
+            courses.append(course)
             course_index = course_index + 1
         except NoSuchElementException:
             break
@@ -194,13 +194,13 @@ if __name__ == '__main__':
     logging.info('\a')
     logging.info("retrieving courses")
     subjects = getSubjects()
-    # subjects = ["SEG", "CSI", "ADM"]
+    subjects = ["SEG", "CSI", "ADM"]
     logging.info("got courses")
     logging.info(subjects)
 
     with ThreadPoolExecutor(max_workers=10) as executer:
         for term in ["2199", "2201"]:
-            result = {}
+            result = []
             futures = []
             for subject in subjects:
                 for year in [1, 2, 3, 4]:
@@ -212,7 +212,7 @@ if __name__ == '__main__':
             for x in as_completed(futures):
                 if x.result() is not None:
                     logging.info("Joining " + str(len(x.result())))
-                    result = {**result, **x.result()}
+                    result.extend(x.result())
 
             with open(term + ".json", "w") as schedules_file:
                 res = {}
